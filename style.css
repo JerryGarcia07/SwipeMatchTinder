@@ -37,3 +37,29 @@ section {
   padding: 16px 6px;
   margin: 22px;
 }
+
+header {
+  display: flex;
+  justify-content: center;
+
+  & img {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+footer {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  padding: 0 24px;
+  justify-content: center;
+  align-items: center;
+
+  & button {
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+  }
+}
