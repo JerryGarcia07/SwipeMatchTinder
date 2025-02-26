@@ -65,6 +65,9 @@ const startDrag = (event) => {
     } else {
       actulCard.classList.add("reset");
       actulCard.classList.remove("go-right", "go-left");
+      actulCard.querySelectorAll(".choice").forEach((el) => {
+        el.style.opacity = 0;
+      });
     }
 
     //reset the variables
