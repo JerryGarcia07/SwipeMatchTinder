@@ -39,8 +39,10 @@ const startDrag = (event) => {
     document.removeEventListener("mousemove", onMove);
     document.removeEventListener("mouseup", onEnd);
 
-    document.removeEventListener("touchmove", onMove);
-    document.removeEventListener("touchend", onEnd);
+    document.removeEventListener("touchmove", onMove, { passive: true });
+    document.removeEventListener("touchend", onEnd, { passive: true });
+
+    //saber si el ususario tomo una decision
 
     const decisionMade = Math.abs(pullDeletax) >= DECISION_THRESHOLD;
     if (decisionMade) {
@@ -49,13 +51,9 @@ const startDrag = (event) => {
 
       //add class acording to the decision
       actulCard.classList.add(goRight ? "go-right" : "go-left");
-      actulCard.addEventListener(
-        "transitionend",
-        () => {
-          actulCard.remove();
-        },
-        { once: true }
-      );
+      actulCard.addEventListener("transitionend", () => {
+        actulCard.remove();
+      });
     } else {
       actulCard.classList.add("reset");
       actulCard.classList.remove("go-right", "go-left");
@@ -63,7 +61,7 @@ const startDrag = (event) => {
 
     //reset the variables
     actulCard.addEventListener("transitionend", () => {
-      actulCard.removeAtttibute("style");
+      actulCard.removeAttribute("style");
       actulCard.classList.remove("reset");
 
       pullDeletax = 0;
