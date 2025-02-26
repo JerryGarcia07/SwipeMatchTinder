@@ -1,3 +1,4 @@
+const DECISION_THRESHOLD = 80;
 let isAnimating = false;
 let pullDeletax = 0; //distance que la card se esta arrastrando
 
@@ -37,8 +38,37 @@ const startDrag = (event) => {
     //remove the event listeners
     document.removeEventListener("mousemove", onMove);
     document.removeEventListener("mouseup", onEnd);
+
     document.removeEventListener("touchmove", onMove);
     document.removeEventListener("touchend", onEnd);
+
+    const decisionMade = Math.abs(pullDeletax) >= DECISION_THRESHOLD;
+    if (decisionMade) {
+      const goRight = pullDeletax >= 0;
+      const goleft = !goRight;
+
+      //add class acording to the decision
+      actulCard.classList.add(goRight ? "go-right" : "go-left");
+      actulCard.addEventListener(
+        "transitionend",
+        () => {
+          actulCard.remove();
+        },
+        { once: true }
+      );
+    } else {
+      actulCard.classList.add("reset");
+      actulCard.classList.remove("go-right", "go-left");
+    }
+
+    //reset the variables
+    actulCard.addEventListener("transitionend", () => {
+      actulCard.removeAtttibute("style");
+      actulCard.classList.remove("reset");
+
+      pullDeletax = 0;
+      isAnimating = false;
+    });
   }
 };
 

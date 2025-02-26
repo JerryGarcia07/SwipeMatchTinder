@@ -111,11 +111,11 @@ footer {
     z-index: 2;
 
     &.go-left {
-      transform: translateX(-100%) rotate(-20deg) !important;
+      transform: translateX(-200%) rotate(-30deg) !important;
     }
 
     &.go-right {
-      transform: translateX(100%) rotate(20deg) !important;
+      transform: translateX(200%) rotate(30deg) !important;
     }
 
     &.go-left,
