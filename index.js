@@ -32,7 +32,15 @@ const startDrag = (event) => {
     //change the cursor to grabbing
     actulCard.style.cursor = "grabbing";
 
-    console.log(pullDeletax);
+    //change opacity of the choise info
+    const opacity = Math.abs(pullDeletax) / 100;
+    const isRight = pullDeletax > 0;
+
+    const choiseEl = isRight
+      ? actulCard.querySelector(".choice.like")
+      : actulCard.querySelector(".choice.nope");
+
+    choiseEl.style.opacity = opacity;
   }
   function onEnd(event) {
     //remove the event listeners
